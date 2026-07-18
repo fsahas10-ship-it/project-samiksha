@@ -36,7 +36,7 @@ export default function EditWishPage() {
 
     if (error) {
       alert("Wish not found.");
-      router.push("/dashboard");
+      router.push("/home");
       return;
     }
 
@@ -69,7 +69,7 @@ export default function EditWishPage() {
     }
 
     alert("Wish updated successfully!");
-    router.push("/dashboard");
+    router.push("/home");
   }
 
   if (loading) {

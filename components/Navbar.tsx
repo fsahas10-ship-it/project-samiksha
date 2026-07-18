@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
         <Link
-          href="/dashboard"
+          href="/home"
           className="text-2xl font-bold"
         >
           🎁 Project Samiksha
@@ -29,9 +29,9 @@ export default function Navbar() {
         <nav className="flex items-center gap-6">
 
           <Link
-            href="/dashboard"
+            href="/home"
             className={
-              pathname === "/dashboard"
+              pathname === "/home"
                 ? "font-semibold"
                 : "text-gray-500"
             }
