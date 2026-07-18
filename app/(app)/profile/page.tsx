@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import Navbar from "@/components/Navbar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -140,23 +139,30 @@ export default function ProfilePage() {
       : "";
 
   return (
-    <>
-      <Navbar />
-
-      <main className="mx-auto max-w-3xl p-8">
+    
+      <main className="mx-auto max-w-5xl py-8">
         <Card>
           <CardContent className="space-y-6 p-8">
-            <h1 className="text-3xl font-bold">
-              My Profile
-            </h1>
+           <div className="space-y-1">
+  <h1 className="text-4xl font-bold">
+    My Profile
+  </h1>
 
-            {avatarUrl && (
-              <img
-                src={avatarUrl}
-                alt="Avatar"
-                className="h-32 w-32 rounded-full object-cover border"
-              />
-            )}
+  <p className="text-gray-500">
+    Manage your public profile and wishlist.
+  </p>
+</div>
+
+            <div className="flex justify-center">
+  <img
+    src={
+      avatarUrl ||
+      "https://placehold.co/200x200?text=Avatar"
+    }
+    alt="Avatar"
+    className="h-36 w-36 rounded-full border object-cover"
+  />
+</div>
 
             <div>
               <label className="mb-2 block font-medium">
@@ -243,6 +249,5 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </main>
-    </>
   );
 }

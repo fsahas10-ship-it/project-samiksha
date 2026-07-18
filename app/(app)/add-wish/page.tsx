@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -69,7 +68,7 @@ setLoading(true);
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/home");
     router.refresh();
   }
 
@@ -116,16 +115,20 @@ setLoading(true);
 
 
   return (
-    <>
-      <Navbar />
+   
 
-      <main className="mx-auto max-w-3xl p-8">
+      <main className="mx-auto max-w-4xl py-8">
         <Card>
           <CardContent className="space-y-6 p-8">
-            <h1 className="text-3xl font-bold">
-              Add New Wish
-            </h1>
+           <div className="space-y-1">
+  <h1 className="text-4xl font-bold">
+    Add New Wish
+  </h1>
 
+  <p className="text-gray-500">
+    Add something you'd love to receive.
+  </p>
+</div>
             <form
               onSubmit={saveWish}
               className="space-y-5"
@@ -260,6 +263,6 @@ setLoading(true);
           </CardContent>
         </Card>
       </main>
-    </>
+  
   );
 }

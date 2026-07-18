@@ -8,12 +8,13 @@ import { Button } from "@/components/ui/button";
 type Wish = {
   id: number;
   title: string;
-  description: string;
-  price: number;
-  priority?: string;
-  image_url?: string;
-  product_url?: string;
-  is_purchased?: boolean;
+  description?: string | null;
+  price?: number | null;
+  priority?: string | null;
+  category?: string | null;
+  image_url?: string | null;
+  product_url?: string | null;
+  is_purchased?: boolean | null;
 };
 
 type WishCardProps = {
@@ -26,49 +27,87 @@ export default function WishCard({
   showActions = true,
 }: WishCardProps) {
   return (
-    <Card className="overflow-hidden transition hover:shadow-lg">
-      {wish.image_url && (
-        <img
-          src={wish.image_url}
-          alt={wish.title}
-          className="h-56 w-full object-cover"
-        />
-      )}
+    <Card className="overflow-hidden rounded-2xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="aspect-square bg-gray-100 overflow-hidden">
+        {wish.image_url ? (
+          <img
+            src={wish.image_url}
+            alt={wish.title}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center text-gray-400">
+            No Image
+          </div>
+        )}
+      </div>
 
       <CardContent className="space-y-4 p-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold">{wish.title}</h2>
+        <div className="flex items-start justify-between gap-3">
+          <h2 className="text-lg font-semibold leading-tight">
+            {wish.title}
+          </h2>
 
-          <Badge>{wish.priority || "Low"}</Badge>
+          <Badge>
+            {wish.priority ?? "Low"}
+          </Badge>
         </div>
 
-        <p className="text-gray-600">{wish.description}</p>
-
-        <p className="text-2xl font-bold">
-          ₹{Number(wish.price).toLocaleString("en-IN")}
-        </p>
-
-        {wish.is_purchased && (
-          <Badge variant="secondary">Purchased</Badge>
+        {wish.category && (
+          <Badge variant="secondary">
+            {wish.category}
+          </Badge>
         )}
 
+        {wish.description && (
+          <p className="line-clamp-2 text-sm text-gray-600">
+            {wish.description}
+          </p>
+        )}
+
+        <div className="flex items-center justify-between">
+          <p className="text-2xl font-bold">
+            {wish.price
+              ? `₹${Number(wish.price).toLocaleString("en-IN")}`
+              : "Price not set"}
+          </p>
+
+          {wish.is_purchased && (
+            <Badge variant="secondary">
+              Purchased
+            </Badge>
+          )}
+        </div>
+
         {showActions && (
-          <div className="flex gap-2">
-            <Link href={`/edit/${wish.id}`} className="flex-1">
-              <Button className="w-full">Edit</Button>
+          <div className="grid grid-cols-2 gap-2">
+            <Link href={`/edit/${wish.id}`}>
+              <Button className="w-full">
+                Edit
+              </Button>
             </Link>
 
-            {wish.product_url && (
+            {wish.product_url ? (
               <a
                 href={wish.product_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1"
               >
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full"
+                >
                   View
                 </Button>
               </a>
+            ) : (
+              <Button
+                disabled
+                variant="outline"
+                className="w-full"
+              >
+                No Link
+              </Button>
             )}
           </div>
         )}
