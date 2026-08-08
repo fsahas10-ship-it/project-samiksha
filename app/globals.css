@@ -128,3 +128,55 @@
     @apply font-sans;
   }
 }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(240,240,240,.9), transparent 35%),
+    #f8fafc;
+}
+
+::selection {
+  background: #111827;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.2s ease;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
